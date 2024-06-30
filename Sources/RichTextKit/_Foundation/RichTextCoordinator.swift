@@ -56,7 +56,7 @@ open class RichTextCoordinator: NSObject {
     public var text: Binding<NSAttributedString>
 
     /// The text view for which the coordinator is used.
-    public private(set) var textView: RichTextView
+    public var textView: RichTextView
 
     /// This set is used to store context observations.
     public var cancellables = Set<AnyCancellable>()
