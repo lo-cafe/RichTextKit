@@ -49,7 +49,7 @@ open class RichTextView: NSTextView, RichTextViewComponent {
         overscrollY = offset
     }
     
-    var bottomOverscroll: CGFloat = 0
+    var bottomOverscroll: CGFloat = 20
     var overscrollY: CGFloat = 0
     
     open override var textContainerOrigin: NSPoint {
