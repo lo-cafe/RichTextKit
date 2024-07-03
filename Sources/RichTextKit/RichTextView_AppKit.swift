@@ -42,7 +42,22 @@ open class RichTextView: NSTextView, RichTextViewComponent {
     public var imageConfiguration: RichTextImageConfiguration = .disabled
 
     // MARK: - Overrides
-
+    
+    func scrollViewDidResize(_ scrollView: NSScrollView) {
+        let offset = (scrollView.bounds.height - bottomOverscroll) / 2
+        textContainerInset = NSSize(width: 0, height: offset)
+        overscrollY = offset
+    }
+    
+    var bottomOverscroll: CGFloat = 0
+    var overscrollY: CGFloat = 0
+    
+    open override var textContainerOrigin: NSPoint {
+        return super
+            .textContainerOrigin
+            .applying(.init(translationX: 0, y: -overscrollY))
+    }
+    
     /// Paste the current pasteboard content into the view.
     open override func paste(_ sender: Any?) {
         let pasteboard = NSPasteboard.general
