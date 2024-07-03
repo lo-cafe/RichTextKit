@@ -44,18 +44,18 @@ open class RichTextView: NSTextView, RichTextViewComponent {
     // MARK: - Overrides
     
     public func scrollViewDidResize(_ scrollView: NSScrollView) {
-        let offset = floor((scrollView.bounds.height - bottomOverscroll) / 2) - 1
-        textContainerInset = NSSize(width: 0, height: offset)
-        overscrollY = offset
+//        let offset = floor((scrollView.bounds.height - bottomOverscroll) / 2) - 1
+        textContainerInset = NSSize(width: 0, height: bottomOverscroll / 2)
+//        overscrollY = offset
     }
     
     public var bottomOverscroll: CGFloat = 10
-    public var overscrollY: CGFloat = 0
+//    public var overscrollY: CGFloat = 0
     
     open override var textContainerOrigin: NSPoint {
         return super
             .textContainerOrigin
-            .applying(.init(translationX: 0, y: -overscrollY))
+            .applying(.init(translationX: 0, y: -(bottomOverscroll / 2)))
     }
     
     /// Paste the current pasteboard content into the view.
