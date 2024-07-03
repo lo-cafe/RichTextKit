@@ -44,7 +44,7 @@ open class RichTextView: NSTextView, RichTextViewComponent {
     // MARK: - Overrides
     
     public func scrollViewDidResize(_ scrollView: NSScrollView) {
-        let offset = (scrollView.bounds.height - bottomOverscroll) / 2
+        let offset = floor((scrollView.bounds.height - bottomOverscroll) / 2) - 1
         textContainerInset = NSSize(width: 0, height: offset)
         overscrollY = offset
     }
